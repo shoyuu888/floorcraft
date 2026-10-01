@@ -44,3 +44,29 @@ CREATE TABLE round (
     round_no  INT NOT NULL CHECK (round_no > 0),
     UNIQUE (event_id, round_no)
 );
+
+-- judge: one row per adjudicator
+CREATE TABLE judge (
+    judge_id  SERIAL PRIMARY KEY,
+    name      TEXT NOT NULL,
+    country   TEXT
+);
+
+-- callback_mark: heats. A row exists only when the judge gave the couple a callback (✓) in that dance
+CREATE TABLE callback_mark (
+    round_id   INT  NOT NULL REFERENCES round(round_id),
+    judge_id   INT  NOT NULL REFERENCES judge(judge_id),
+    couple_id  INT  NOT NULL REFERENCES couple(couple_id),
+    dance      TEXT NOT NULL CHECK (dance IN ('samba', 'cha_cha', 'rumba', 'paso_doble', 'jive')),
+    PRIMARY KEY (round_id, judge_id, couple_id, dance)
+);
+
+-- placement_mark: final. One placing per judge, couple and dance
+CREATE TABLE placement_mark (
+    round_id   INT  NOT NULL REFERENCES round(round_id),
+    judge_id   INT  NOT NULL REFERENCES judge(judge_id),
+    couple_id  INT  NOT NULL REFERENCES couple(couple_id),
+    dance      TEXT NOT NULL CHECK (dance IN ('samba', 'cha_cha', 'rumba', 'paso_doble', 'jive')),
+    place      INT  NOT NULL CHECK (place BETWEEN 1 AND 8),
+    PRIMARY KEY (round_id, judge_id, couple_id, dance)
+);
