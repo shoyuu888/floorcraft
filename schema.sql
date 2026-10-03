@@ -70,3 +70,13 @@ CREATE TABLE placement_mark (
     place      INT  NOT NULL CHECK (place BETWEEN 1 AND 8),
     PRIMARY KEY (round_id, judge_id, couple_id, dance)
 );
+
+-- training_session: one row per dancer per session. Session load (sRPE) = rpe * duration_min, computed in queries
+CREATE TABLE training_session (
+    session_id    SERIAL PRIMARY KEY,
+    dancer_id     INT  NOT NULL REFERENCES dancer(dancer_id),
+    trained_on    DATE NOT NULL,
+    type          TEXT NOT NULL CHECK (type IN ('dance', 'fitness', 'competition')),
+    duration_min  INT  NOT NULL CHECK (duration_min > 0),
+    rpe           INT  NOT NULL CHECK (rpe BETWEEN 0 AND 10)
+);
