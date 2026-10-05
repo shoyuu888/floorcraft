@@ -80,3 +80,16 @@ CREATE TABLE training_session (
     duration_min  INT  NOT NULL CHECK (duration_min > 0),
     rpe           INT  NOT NULL CHECK (rpe BETWEEN 0 AND 10)
 );
+
+-- wellness: one morning check-in per dancer per day (1-5 scales)
+CREATE TABLE wellness (
+    wellness_id  SERIAL PRIMARY KEY,
+    dancer_id    INT  NOT NULL REFERENCES dancer(dancer_id),
+    recorded_on  DATE NOT NULL,
+    sleep        INT  NOT NULL CHECK (sleep    BETWEEN 1 AND 5),
+    fatigue      INT  NOT NULL CHECK (fatigue  BETWEEN 1 AND 5),
+    soreness     INT  NOT NULL CHECK (soreness BETWEEN 1 AND 5),
+    stress       INT  NOT NULL CHECK (stress   BETWEEN 1 AND 5),
+    mood         INT  NOT NULL CHECK (mood     BETWEEN 1 AND 5),
+    UNIQUE (dancer_id, recorded_on)
+);
