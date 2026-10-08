@@ -6,3 +6,8 @@
 
 ## Status
 - [x] `dancer`, `couple`, `competition`, `event`, `round`, `judge`, `callback_mark`, `placement_mark`, `training_session`, `wellness` tables (schema complete)
+
+## Try it
+```bash
+psql -f schema.sql -f seed.sql   # seed.sql is fictional sample data
+```
