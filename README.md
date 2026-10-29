@@ -6,6 +6,14 @@
 
 ## Status
 - [x] `dancer`, `couple`, `competition`, `event`, `round`, `judge`, `callback_mark`, `placement_mark`, `training_session`, `wellness` tables (schema complete)
+- [x] Fictional sample data (`seed.sql`) and first queries (`queries/`)
+- [ ] Nov 2026: result queries on sample data; import my own training log and compute sRPE
+- [ ] Dec 2026: ACWR on sample data, then on my own log
+- [ ] Ongoing to end of 2027: add each real competition within a week of dancing it
+
+## Data
+- `seed.sql` is fictional and stays fixed, so the example queries always give the same answers.
+- Real data grows over time: one competition at a time, plus my own training log. Partner and other dancers' names are replaced with codes (P1, P2...) because this repo is public.
 
 ## Try it
 ```bash
