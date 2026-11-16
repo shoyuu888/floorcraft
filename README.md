@@ -18,4 +18,5 @@
 ## Try it
 ```bash
 psql -f schema.sql -f seed.sql   # seed.sql is fictional sample data
+psql -f data/real/2026-11-15_vision_cup.sql   # first real competition
 ```
