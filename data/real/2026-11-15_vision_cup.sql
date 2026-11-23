@@ -44,3 +44,11 @@ JOIN judge j ON j.name = v.judge
 JOIN round r ON r.name = 'Semi-final'
 JOIN event e ON e.event_id = r.event_id AND e.name = 'Amateur Open Latin'
 JOIN couple c ON c.leader_id = (SELECT dancer_id FROM dancer WHERE name_en = 'Dancer H');
+
+-- Overall result: eliminated in the semi-final with 27 callbacks (no place given)
+INSERT INTO round_result (round_id, couple_id, place, total)
+SELECT r.round_id, c.couple_id, NULL, 27
+FROM round r
+JOIN event e ON e.event_id = r.event_id AND e.name = 'Amateur Open Latin'
+JOIN couple c ON c.leader_id = (SELECT dancer_id FROM dancer WHERE name_en = 'Dancer H')
+WHERE r.name = 'Semi-final';

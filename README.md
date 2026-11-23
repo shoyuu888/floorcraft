@@ -5,7 +5,7 @@
 **JA:** Floorcraft は、ラテン・ダンススポーツのカップル向けの日英バイリンガルなデータアプリです。競技結果、ジャッジの採点、トレーニング負荷（sRPE・ACWR）を一つの Postgres データベースにまとめ、カップルとコーチが「何が結果を左右しているか」を確かめられるようにします。
 
 ## Status
-- [x] `dancer`, `couple`, `competition`, `event`, `round`, `judge`, `callback_mark`, `placement_mark`, `training_session`, `wellness` tables (schema complete)
+- [x] `dancer`, `couple`, `competition`, `event`, `round`, `judge`, `callback_mark`, `placement_mark`, `training_session`, `wellness`, `round_result` tables
 - [x] Fictional sample data (`seed.sql`) and first queries (`queries/`)
 - [ ] Nov 2026: result queries on sample data; import my own training log and compute sRPE
 - [ ] Dec 2026: ACWR on sample data, then on my own log
@@ -18,5 +18,5 @@
 ## Try it
 ```bash
 psql -f schema.sql -f seed.sql   # seed.sql is fictional sample data
-psql -f data/real/2026-11-15_vision_cup.sql   # first real competition
+psql -f data/real/2026-11-15_vision_cup.sql -f data/real/2026-11-22_cyo_cup.sql   # real competitions
 ```

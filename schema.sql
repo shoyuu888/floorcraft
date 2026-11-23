@@ -93,3 +93,12 @@ CREATE TABLE wellness (
     mood         INT  NOT NULL CHECK (mood     BETWEEN 1 AND 5),
     UNIQUE (dancer_id, recorded_on)
 );
+
+-- round_result: a couple's overall result in one round (when per-judge marks are not available)
+CREATE TABLE round_result (
+    round_id   INT NOT NULL REFERENCES round(round_id),
+    couple_id  INT NOT NULL REFERENCES couple(couple_id),
+    place      INT CHECK (place >= 1),
+    total      NUMERIC,
+    PRIMARY KEY (round_id, couple_id)
+);
